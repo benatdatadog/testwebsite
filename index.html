@@ -24,7 +24,7 @@
   
   function onCheckoutButtonClick(cart) {
     window.DD_RUM && DD_RUM.addAction('checkout', {
-        'value':  42.12,
+        'value':  Math.floor(Math.random() * 100),
         'items': ['tomato', 'strawberries']
     })
     }
