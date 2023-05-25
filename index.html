@@ -21,12 +21,19 @@
       defaultPrivacyLevel: 'allow',
     });
 
+  function CustomException(message, metadata) {
+  const error = new Error(message);
+  error.metadata = metadata;
+  return error;
+  }
   
   function onCheckoutButtonClick(cart) {
     window.DD_RUM && DD_RUM.addAction('checkout', {
         'value':  Math.floor(Math.random() * 100),
         'items': ['tomato', 'strawberries']
     })
+    
+    CustomException("Error: My customer error", "a:b"
     }
   
   
