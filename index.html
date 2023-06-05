@@ -24,6 +24,8 @@
   function CustomException(message, metadata) {
   const error = new Error(message);
   error.metadata = metadata;
+  DD_RUM.addError(error);
+
   return error;
   }
   
