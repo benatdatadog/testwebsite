@@ -25,7 +25,7 @@
     const error = new Error(message);
     error.metadata = metadata;
     DD_RUM.addError(error,  {
-        source: 'custom',
+        source: 'source',
     });
 
     return error;
