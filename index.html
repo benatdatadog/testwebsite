@@ -12,7 +12,7 @@
       service: 'bensunderland.github.io',
       env: 'dev',
       // Specify a version number to identify the deployed version of your application in Datadog 
-      // version: '1.0.0',
+      version: '1.0.0',
       sampleRate: 100,
       sessionReplaySampleRate: 100,
       trackInteractions: true,
@@ -22,11 +22,11 @@
     });
 
   function CustomException(message, metadata) {
-  const error = new Error(message);
-  error.metadata = metadata;
-  DD_RUM.addError(error);
+    const error = new Error(message);
+    error.metadata = metadata;
+    DD_RUM.addError(error);
 
-  return error;
+    return error;
   }
   
   function onCheckoutButtonClick(cart) {
@@ -34,14 +34,14 @@
         'value':  Math.floor(Math.random() * 100),
         'items': ['tomato', 'strawberries']
     });
-    // throw new Error('Exception message');
-
-    CustomException("Error: My customer error", "a:b");
     }
   
-  
-    window.DD_RUM &&
-    window.DD_RUM.startSessionReplayRecording();
+  function onErrorButtonClick() {
+    CustomException("Error: My customer error", "a:b");
+    }
+
+  window.DD_RUM &&
+  window.DD_RUM.startSessionReplayRecording();
 </script>
 
 
@@ -49,8 +49,9 @@
 <h1 >You did it!</h1>
 <a href="https://app.datadoghq.com/rum/list">https://app.datadoghq.com/rum/list</a>
 
-<input type="button" onclick="onCheckoutButtonClick();" value="click me!" />
+<input type="button" onclick="onCheckoutButtonClick();" value="Checkout Now" />
 
+<input type="button" onclick="onErrorButtonClick();" value="Cause Error" />
 
 
 </body>
